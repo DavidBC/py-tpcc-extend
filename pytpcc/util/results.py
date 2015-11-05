@@ -33,7 +33,7 @@ class Results:
         self.start = None
         self.stop = None
         self.txn_id = 0
-        
+        self.txn_record = []
         self.txn_counters = { }
         self.txn_times = { }
         self.running = { }
@@ -76,6 +76,8 @@ class Results:
         
         total_cnt = self.txn_counters.get(txn_name, 0)
         self.txn_counters[txn_name] = total_cnt + 1
+
+        self.txn_record.append((txn_name, txn_start, duration))
         
     def append(self, r):
         for txn_name in r.txn_counters.keys():
@@ -125,6 +127,12 @@ class Results:
         ret += "\n" + ("-"*total_width)
         total_rate = "%.02f txn/s" % ((total_cnt / total_time))
         ret += f % ("TOTAL", str(total_cnt), str(total_time * 1000000), total_rate)
+
+        filename = '../outputResults.txt'
+        with open(filename, 'w') as f:
+            for txn in self.txn_record:
+				line = ', '.join(str(x) for x in txn)
+				f.write(line + '\n')
 
         return (ret.encode('utf-8'))
 ## CLASS
