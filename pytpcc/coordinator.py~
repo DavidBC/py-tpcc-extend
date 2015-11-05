@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # -----------------------------------------------------------------------
 # Copyright (C) 2011
-# Andy Pavlo
+# Andy Pavlo & Yang Lu
 # http:##www.cs.brown.edu/~pavlo/
 #
 # Permission is hereby granted, free of charge, to any person obtaining
@@ -33,8 +33,11 @@ import logging
 import re
 import argparse
 import glob
-import time 
-import multiprocessing
+import time
+import pickle
+import execnet
+import worker
+import message
 from ConfigParser import SafeConfigParser
 from pprint import pprint,pformat
 
@@ -70,122 +73,52 @@ def getDrivers():
 ## ==============================================
 ## startLoading
 ## ==============================================
-def startLoading(driverClass, scaleParameters, args, config):
-    logging.debug("Creating client pool with %d processes" % args['clients'])
-    pool = multiprocessing.Pool(args['clients'])
-    debug = logging.getLogger().isEnabledFor(logging.DEBUG)
-    
-    # Split the warehouses into chunks
-    w_ids = map(lambda x: [ ], range(args['clients']))
+def startLoading(scalParameters,args,config,channels):  
+    #Split the warehouses into chunks
+    procs = len(channels)
+    w_ids = map(lambda x:[], range(procs))
     for w_id in range(scaleParameters.starting_warehouse, scaleParameters.ending_warehouse+1):
-        idx = w_id % args['clients']
+        idx = w_id % procs
         w_ids[idx].append(w_id)
-    ## FOR
-    
-    loader_results = [ ]
-    for i in range(args['clients']):
-        r = pool.apply_async(loaderFunc, (driverClass, scaleParameters, args, config, w_ids[i], True))
-        loader_results.append(r)
-    ## FOR
-    
-    pool.close()
-    logging.debug("Waiting for %d loaders to finish" % args['clients'])
-    pool.join()
-## DEF
-
-## ==============================================
-## loaderFunc
-## ==============================================
-def loaderFunc(driverClass, scaleParameters, args, config, w_ids, debug):
-    driver = driverClass(args['ddl'])
-    assert driver != None
-    logging.debug("Starting client execution: %s [warehouses=%d]" % (driver, len(w_ids)))
-    
-    config['load'] = True
-    config['execute'] = False
-    config['reset'] = False
-    driver.loadConfig(config)
-   
-    try:
-        loadItems = (1 in w_ids)
-        l = loader.Loader(driver, scaleParameters, w_ids, loadItems)
-        driver.loadStart()
-        l.execute()
-        driver.loadFinish()   
-    except KeyboardInterrupt:
-            return -1
-    except (Exception, AssertionError), ex:
-        logging.warn("Failed to load data: %s" % (ex))
-        #if debug:
-        traceback.print_exc(file=sys.stdout)
-        raise
+    print w_ids
         
-## DEF
-
-## ==============================================
-## startExecution
-## ==============================================
-def startExecution(driverClass, scaleParameters, args, config):
-    logging.debug("Creating client pool with %d processes" % args['clients'])
-    pool = multiprocessing.Pool(args['clients'])
-    debug = logging.getLogger().isEnabledFor(logging.DEBUG)
-    
-    worker_results = [ ]
-    for i in range(args['clients']):
-        r = pool.apply_async(executorFunc, (driverClass, scaleParameters, args, config, debug,))
-        worker_results.append(r)
-    ## FOR
-    pool.close()
-    pool.join()
-    
-    total_results = results.Results()
-    for asyncr in worker_results:
-        asyncr.wait()
-        r = asyncr.get()
-        assert r != None, "No results object returned!"
-        if type(r) == int and r == -1: sys.exit(1)
-        total_results.append(r)
-    ## FOR
-    
-    return (total_results)
-## DEF
+    load_start=time.time()
+    for i in range(len(channels)):
+        m=message.Message(header=message.CMD_LOAD,data=[scalParameters,args,config,w_ids[i]])
+        channels[i].send(pickle.dumps(m,-1))
+    for ch in channels:
+        ch.receive()
+        pass
+    return time.time()-load_start
 
 ## ==============================================
 ## warmup
 ## ==============================================
-def warmup(driverClass, scaleParameters, args, config):
+def warmup(scaleParameters, args, config,channels):
+
     args['duration'] = 30
-    logging.debug("Warmup: creating client pool with %d processes" % args['clients'])
-    pool = multiprocessing.Pool(args['clients'])
-    debug = logging.getLogger().isEnabledFor(logging.DEBUG)
-
-    for i in range(args['clients']):
-        r = pool.apply_async(executorFunc, (driverClass, scaleParameters, args, config, debug,))
-
-    ## FOR
-    pool.close()
-    pool.join()
+    for ch in channels:
+        m=message.Message(header=message.CMD_EXECUTE,data=[scaleParameters,args,config])
+        ch.send(pickle.dumps(m,-1))
+    for ch in channels:
+        ch.receive()
+        pass
+## ==============================================
+## startExecution
+## ==============================================
+def startExecution(scaleParameters, args, config,channels):
+    procs = len(channels)
+    total_results = results.Results()
+    
+    for ch in channels:
+        m=message.Message(header=message.CMD_EXECUTE,data=[scaleParameters,args,config])
+        ch.send(pickle.dumps(m,-1))
+    for ch in channels:
+        r=pickle.loads(ch.receive()).data
+        total_results.append(r)
+    return (total_results)
 ## DEF
 
-## ==============================================
-## executorFunc
-## ==============================================
-def executorFunc(driverClass, scaleParameters, args, config, debug):
-    driver = driverClass(args['ddl'])
-    assert driver != None
-    logging.debug("Starting client execution: %s" % driver)
-    
-    config['execute'] = True
-    config['reset'] = False
-    driver.loadConfig(config)
-
-    e = executor.Executor(driver, scaleParameters, stop_on_error=args['stop_on_error'])
-    driver.executeStart()
-    results = e.execute(args['duration'])
-    driver.executeFinish()
-    
-    return results
-## DEF
 
 ## ==============================================
 ## main
@@ -206,8 +139,10 @@ if __name__ == '__main__':
                          help='How long to run the benchmark in seconds')
     aparser.add_argument('--ddl', default=os.path.realpath(os.path.join(os.path.dirname(__file__), "tpcc.sql")),
                          help='Path to the TPC-C DDL SQL file')
-    aparser.add_argument('--clients', default=1, type=int, metavar='N',
-                         help='The number of blocking clients to fork')
+    ## number of processes per node
+    aparser.add_argument('--clientprocs', default=1, type=int, metavar='N',
+                         help='Number of processes on each client node.')
+                         
     aparser.add_argument('--stop-on-error', action='store_true',
                          help='Stop the transaction execution when the driver throws an exception.')
     aparser.add_argument('--no-load', action='store_true',
@@ -249,7 +184,25 @@ if __name__ == '__main__':
     if config['reset']: logging.info("Reseting database")
     driver.loadConfig(config)
     logging.info("Initializing TPC-C benchmark using %s" % driver)
-
+    
+    
+    ##Get a list of clientnodes from configuration file.
+    clients=[]
+    channels=[]
+    assert config['clients']!=''
+    clients=re.split(r"\s+",str(config['clients']))
+    #print clients, len(clients),args['clientprocs']
+    ##Create ssh channels to client nodes
+    for node in clients:
+        cmd = 'ssh='+ node
+        cmd += r"//chdir="
+        cmd += config['path']
+        #print cmd
+        for i in range(args['clientprocs']):
+            gw=execnet.makegateway(cmd)
+            ch=gw.remote_exec(worker)
+            channels.append(ch)
+    
     ## Create ScaleParameters
     scaleParameters = scaleparameters.makeWithScaleFactor(args['warehouses'], args['scalefactor'])
     nurand = rand.setNURand(nurand.makeForLoad())
@@ -258,28 +211,14 @@ if __name__ == '__main__':
     ## DATA LOADER!!!
     load_time = None
     if not args['no_load']:
-        logging.info("Loading TPC-C benchmark data using %s" % (driver))
-        load_start = time.time()
-        if args['clients'] == 1:
-            l = loader.Loader(driver, scaleParameters, range(scaleParameters.starting_warehouse, scaleParameters.ending_warehouse+1), True)
-            driver.loadStart()
-            l.execute()
-            driver.loadFinish()
-        else:
-            startLoading(driverClass, scaleParameters, args, config)
-        load_time = time.time() - load_start
+        load_time = startLoading(scaleParameters, args, config,channels)
+        #print load_time
     ## IF
     
     ## WORKLOAD DRIVER!!!
     if not args['no_execute']:
-        warmup(driverClass, scaleParameters, args, config)
-        if args['clients'] == 1:
-            e = executor.Executor(driver, scaleParameters, stop_on_error=args['stop_on_error'])
-            driver.executeStart()
-            results = e.execute(args['duration'])
-            driver.executeFinish()
-        else:
-            results = startExecution(driverClass, scaleParameters, args, config)
+        warmup(scaleParameters, args, config,channels)
+        results = startExecution(scaleParameters, args, config,channels)
         assert results
         print results.show(load_time)
     ## IF

@@ -91,7 +91,18 @@ def startLoading(scalParameters,args,config,channels):
         pass
     return time.time()-load_start
 
-
+## ==============================================
+## warmup
+## ==============================================
+def warmup(scaleParameters, args, config,channels):
+    logging.debug("Warmup for 30 seconds")
+    args['duration'] = 30
+    for ch in channels:
+        m=message.Message(header=message.CMD_EXECUTE,data=[scaleParameters,args,config])
+        ch.send(pickle.dumps(m,-1))
+    for ch in channels:
+        ch.receive()
+        pass
 ## ==============================================
 ## startExecution
 ## ==============================================
@@ -206,6 +217,7 @@ if __name__ == '__main__':
     
     ## WORKLOAD DRIVER!!!
     if not args['no_execute']:
+        warmup(scaleParameters, args, config,channels)
         results = startExecution(scaleParameters, args, config,channels)
         assert results
         print results.show(load_time)
