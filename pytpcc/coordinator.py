@@ -95,10 +95,9 @@ def startLoading(scalParameters,args,config,channels):
 ## warmup
 ## ==============================================
 def warmup(scaleParameters, args, config,channels):
-    logging.debug("Warmup for 30 seconds")
-    args['duration'] = 30
+
     for ch in channels:
-        m=message.Message(header=message.CMD_EXECUTE,data=[scaleParameters,args,config])
+        m=message.Message(header=message.CMD_EXECUTE,data=[scaleParameters,warmup_args,config])
         ch.send(pickle.dumps(m,-1))
     for ch in channels:
         ch.receive()

@@ -35,6 +35,7 @@ import argparse
 import glob
 import time 
 import multiprocessing
+import copy
 from ConfigParser import SafeConfigParser
 from pprint import pprint,pformat
 
@@ -154,13 +155,14 @@ def startExecution(driverClass, scaleParameters, args, config):
 ## warmup
 ## ==============================================
 def warmup(driverClass, scaleParameters, args, config):
-    args['duration'] = 30
-    logging.debug("Warmup: creating client pool with %d processes" % args['clients'])
+    warmup_args = copy.copy(args)
+    warmup_args['duration'] = 30
+    logging.debug("Warmup for 30 seconds")
     pool = multiprocessing.Pool(args['clients'])
     debug = logging.getLogger().isEnabledFor(logging.DEBUG)
 
     for i in range(args['clients']):
-        r = pool.apply_async(executorFunc, (driverClass, scaleParameters, args, config, debug,))
+        r = pool.apply_async(executorFunc, (driverClass, scaleParameters, warmup_args, config, debug,))
 
     ## FOR
     pool.close()
