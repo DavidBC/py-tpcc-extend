@@ -34,21 +34,21 @@ class Results:
         self.stop = None
         self.txn_id = 0
         self.txn_record = []
-        self.txn_counters = { }
-        self.txn_times = { }
-        self.running = { }
+        self.txn_counters = {}
+        self.txn_times = {}
+        self.running = {}
         
     def startBenchmark(self):
         """Mark the benchmark as having been started"""
-        assert self.start == None
+        assert self.start is None
         logging.debug("Starting benchmark statistics collection")
         self.start = time.time()
         return self.start
         
     def stopBenchmark(self):
         """Mark the benchmark as having been stopped"""
-        assert self.start != None
-        assert self.stop == None
+        assert self.start is not None
+        assert self.stop is None
         logging.debug("Stopping benchmark statistics collection")
         self.stop = time.time()
         
@@ -95,9 +95,9 @@ class Results:
         return self.show()
         
     def show(self, load_time = None):
-        if self.start == None:
+        if self.start is None:
             return "Benchmark not started"
-        if self.stop == None:
+        if self.stop is None:
             duration = time.time() - self.start
         else:
             duration = self.stop - self.start
@@ -108,7 +108,7 @@ class Results:
         line = "-"*total_width
 
         ret = u"" + "="*total_width + "\n"
-        if load_time != None:
+        if load_time is not None:
             ret += "Data Loading Time: %d seconds\n\n" % (load_time)
         
         ret += "Execution Results after %d seconds\n%s" % (duration, line)
@@ -119,20 +119,19 @@ class Results:
         for txn in sorted(self.txn_counters.keys()):
             txn_time = self.txn_times[txn]
             txn_cnt = self.txn_counters[txn]
-            rate = u"%.02f txn/s" % ((txn_cnt / txn_time))
+            rate = u"%.02f txn/s" % (txn_cnt / txn_time)
             ret += f % (txn, str(txn_cnt), str(txn_time * 1000000), rate)
             
             total_time += txn_time
             total_cnt += txn_cnt
         ret += "\n" + ("-"*total_width)
-        total_rate = "%.02f txn/s" % ((total_cnt / total_time))
+        total_rate = "%.02f txn/s" % (total_cnt / total_time)
         ret += f % ("TOTAL", str(total_cnt), str(total_time * 1000000), total_rate)
 
         filename = '../outputResults.txt'
         with open(filename, 'w') as f:
             for txn in self.txn_record:
-				line = ', '.join(str(x) for x in txn)
-				f.write(line + '\n')
+                line = ', '.join(str(x) for x in txn)
+                f.write(line + '\n')
 
-        return (ret.encode('utf-8'))
-## CLASS
+        return ret.encode('utf-8')

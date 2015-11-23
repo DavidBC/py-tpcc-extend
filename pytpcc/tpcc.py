@@ -36,6 +36,7 @@ import glob
 import time 
 import multiprocessing
 import copy
+import traceback
 from ConfigParser import SafeConfigParser
 from pprint import pprint,pformat
 
