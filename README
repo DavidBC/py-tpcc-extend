@@ -8,8 +8,12 @@ $ python ./tpcc.py --print-config mongodb > mongodb.config
 Make any changes you need to 'mongodb.config' (e.g., passwords, hostnames). 
 Then test the loader:
 
-$ python ./tpcc.py --no-execute --config=mongodb.config mongodb --reset
+$ python ./tpcc.py --no-execute --reset --config=mongodb.config mongodb
 
 Run the following to not reload tpcc data:
 
-$ python ./tpcc.py --config=mongodb.config mongodb --no-load --duration=120 --client=8
+$ python ./tpcc.py --config=mongodb.config --no-load --duration=120 mongodb
+
+Run the benchmark
+
+$ python ./tpcc.py --config=mongodb.config --reset --duration=600 --clients=12 mongodb
