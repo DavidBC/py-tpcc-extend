@@ -89,6 +89,8 @@ class Results:
             self.txn_counters[txn_name] = orig_cnt + r.txn_counters[txn_name]
             self.txn_times[txn_name] = orig_time + r.txn_times[txn_name]
             #logging.debug("%s [cnt=%d, time=%d]" % (txn_name, self.txn_counters[txn_name], self.txn_times[txn_name]))
+
+        self.txn_record.extend(r.txn_record)
         self.start = r.start
         self.stop = r.stop
             
@@ -129,7 +131,7 @@ class Results:
         total_rate = "%.02f txn/s" % (total_cnt / duration)
         ret += f % ("TOTAL", str(total_cnt), str(duration), total_rate)
 
-        filename = '../outputResults.txt'
+        filename = '../outputResults.csv'
         with open(filename, 'w') as f:
             for txn in self.txn_record:
                 line = ', '.join(str(x) for x in txn)
