@@ -275,7 +275,7 @@ if __name__ == '__main__':
     
     ## WORKLOAD DRIVER!!!
     if not args['no_execute']:
-        # warmup(driverClass, scaleParameters, args, config)
+        warmup(driverClass, scaleParameters, args, config)
         if args['clients'] == 1:
             e = executor.Executor(driver, scaleParameters, stop_on_error=args['stop_on_error'])
             driver.executeStart()
