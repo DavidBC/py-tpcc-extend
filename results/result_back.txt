@@ -1,0 +1,160 @@
+12-03-2015 21:20:11 [<module>:252] INFO : Reseting database
+12-03-2015 21:20:12 [<module>:254] INFO : Initializing TPC-C benchmark using MongodbDriver
+12-03-2015 21:20:12 [<module>:264] INFO : Loading TPC-C benchmark data using MongodbDriver
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:20:12 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:22:48 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:22:58 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:23:03 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:23:28 [loadFinish:354] INFO : Finished loading tables
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:28 [execute:056] INFO : Executing benchmark for 30 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+12-03-2015 21:23:59 [execute:056] INFO : Executing benchmark for 1800 seconds
+==================================================================
+Data Loading Time: 196 seconds
+
+Execution Results after 1800 seconds
+------------------------------------------------------------------
+                  Executed        Time (sec)      Rate            
+  DELIVERY        22561           1800.42612004   12.53 txn/s     
+  NEW_ORDER       252990          1800.42612004   140.52 txn/s    
+  ORDER_STATUS    22740           1800.42612004   12.63 txn/s     
+  PAYMENT         242161          1800.42612004   134.50 txn/s    
+  STOCK_LEVEL     22311           1800.42612004   12.39 txn/s     
+------------------------------------------------------------------
+  TOTAL           562763          1800.42612004   312.57 txn/s    

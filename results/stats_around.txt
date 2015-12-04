@@ -1,0 +1,2 @@
+reads=1165 writes=4506824 
+read_hits=94 read_hit_percent=8 replacement=0 read_invalidates=1 pending_enqueues=0 pending_inval=0 no_room=0 disk_reads=1071 disk_writes=4506833 ssd_reads=94 ssd_writes=1070 uncached_reads=1 uncached_writes=4506828 uncached_IO_requeue=0 uncached_sequential_reads=0 uncached_sequential_writes=0 pid_adds=0 pid_dels=0 pid_drops=0 pid_expiry=0

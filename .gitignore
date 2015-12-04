@@ -2,3 +2,4 @@
 .#kate-*
 *.config
 .idea/
+.DS_Store

@@ -1,0 +1,22 @@
+cachedev: 0 39999488 flashcache stats: 
+	reads(1165), writes(4506824)
+	read hits(94), read hit percent(8)
+	replacement(0), write replacement(0)
+	invalidates(1)
+	pending enqueues(0), pending inval(0)
+	no room(0)
+	disk reads(1071), disk writes(4506833) ssd reads(94) ssd writes(1070)
+	uncached reads(1), uncached writes(4506828), uncached IO requeue(0)
+	disk read errors(0), disk write errors(0) ssd read errors(0) ssd write errors(0)
+	uncached sequential reads(0), uncached sequential writes(0)
+	pid_adds(0), pid_dels(0), pid_drops(0) pid_expiry(0)
+	lru hot blocks(1048576), lru warm blocks(1048576)
+	lru promotions(0), lru demotions(0)
+cachedev: 0 39999488 flashcache conf:
+	ssd dev (/dev/sdc), disk dev (/dev/sdb3) cache mode(WRITE_AROUND)
+	capacity(8192M), associativity(512), data block size(4K)
+	disk assoc(0K)
+	skip sequential thresh(0K)
+	total blocks(2097152), cached blocks(948), cache percent(0)
+	nr_queued(0)
+Size Hist: 1024:1 4096:4507984 
